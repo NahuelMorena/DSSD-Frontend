@@ -1,7 +1,7 @@
-import { Mueble } from './mueble';
+import { Furniture } from './furniture';
 
 describe('Mueble', () => {
   it('should create an instance', () => {
-    expect(new Mueble()).toBeTruthy();
+    expect(new Furniture()).toBeTruthy();
   });
 });

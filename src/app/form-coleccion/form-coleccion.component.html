@@ -1,0 +1,42 @@
+<div>
+    <h1 style="font-family: Times New Roman, sans-serif; margin-bottom: 70px;" class="font-weight-bold text-center" >Nueva Colección</h1>
+</div>
+<div class="container d-flex justify-content-center align-items-center">
+  <div style="width: 75%;"> 
+      <form #collectionForm="ngForm" (ngSubmit)="onSubmit(collectionForm)" style="border: 2px solid #0a0a0a;  padding: 40px;">
+        
+        <div class="form-group mb-5">
+            <label style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Muebles Disponibles</label>
+            <div *ngFor="let furniture of furnitures">
+              <label style="font-size: 20px">
+                <input type="checkbox" name="mueble_{{furniture.id}}" id="mueble_{{furniture.id}}"
+                  [value]="furniture.id"  />
+                <label>Modelo:{{ furniture.model_name }} - Categoria:{{furniture.category}}</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group mb-5">
+            <label for="Detalle Materiales" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Detalle Materiales</label>
+            <textarea rows="5"  cols="100" [(ngModel)]="collection.detalleMateriales"></textarea>
+          </div>
+          
+        <div class="form-group mb-5" style="margin-top: 20px;">
+            <label for="date_start_manufacture" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Fecha de Inicio*</label>
+            <input [(ngModel)]="collection.date_start_manufacture" type="date" required class="form-control form-control-lg" id="date_start_manufacture" name="date_start_manufacture">
+          </div>
+          
+          <div class="form-group mb-5">
+            <label for="date_end_manufacture" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Fecha de Fin*</label>
+            <input [(ngModel)]="collection.date_end_manufacture" type="date" required class="form-control form-control-lg" id="date_end_manufacture" name="date_end_manufacture">
+          </div>
+          
+          <div class="form-group mb-5">
+            <label for="estimated_release_date" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Fecha lanzamiento estimada*</label>
+            <input [(ngModel)]="collection.estimated_release_date" type="date" required class="form-control form-control-lg" id="estimated_release_date" name="estimated_release_date">
+          </div>
+            
+        <button type="submit" class="btn btn-success">Confirmar</button>
+      </form>
+    </div>
+</div>
