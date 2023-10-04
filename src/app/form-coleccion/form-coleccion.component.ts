@@ -1,32 +1,33 @@
 import { Component } from '@angular/core';
-import { Collection } from '../modelos/collection';
 import { NgForm } from '@angular/forms';
 import { Category } from '../modelos/category';
 import { Furniture } from '../modelos/furniture';
 import { FurnitureService } from '../services/furniture-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CollectionDTO } from '../modelos/collection-dto';
+import { CollectionService } from '../services/collection-service';
 
 @Component({
   selector: 'app-form-coleccion',
   templateUrl: './form-coleccion.component.html',
-  providers:[FurnitureService],
+  providers:[FurnitureService,CollectionService],
   styleUrls: ['./form-coleccion.component.css']
 })
 export class FormColeccionComponent {
 
-  constructor(private furnitureService:FurnitureService){
+  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService){
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
-  collection=new Collection(-1,new Date(),new Date(),new Date(),"");
-  muebleSeleccionado:Furniture=new Furniture(0,"","",Category.CAMA)
+  collection=new CollectionDTO(new Date(),new Date(),new Date());
   submitted=false;
   onSubmit(form:NgForm){
     if(form.valid){
-      this.collection.date_start_manufacture=form.value.fechaInicioFabricacion;
-      this.collection.date_end_manufacture=form.value.fechaFinFabricacion;
+      this.collection.date_start_manufacture=form.value.date_start_manufacture;
+      this.collection.date_end_manufacture=form.value.date_end_manufacture;
       this.collection.estimated_release_date=form.value.estimated_release_date
       this.submitted=true;
+      this.createCollection();
     }
   }
 
@@ -40,5 +41,27 @@ export class FormColeccionComponent {
       }
     );
     
+  }
+
+  toggleSelection(furniture: Furniture) {
+    const index = this.collection.furnitures.indexOf(furniture);
+    if (index !== -1) {
+      this.collection.furnitures.splice(index, 1);
+    } else {
+      this.collection.furnitures.push(furniture);
+    }
+    console.log(this.collection.furnitures);
+  }
+
+  createCollection():void{
+    this.collectionService.createCollection(this.collection).subscribe(
+      (response)=> {
+        console.log(response);
+        window.alert("Coleccion creada exitosamente")
+      },
+      (error:HttpErrorResponse)=>{
+        console.error("Error al crear la colección ", error)
+      }
+    )
   }
 }

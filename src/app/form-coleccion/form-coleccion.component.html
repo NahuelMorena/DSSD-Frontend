@@ -10,15 +10,10 @@
             <div *ngFor="let furniture of furnitures">
               <label style="font-size: 20px">
                 <input type="checkbox" name="mueble_{{furniture.id}}" id="mueble_{{furniture.id}}"
-                  [value]="furniture.id"  />
+                  [value]="furniture.id" (change)="toggleSelection(furniture)"  />
                 <label>Modelo:{{ furniture.model_name }} - Categoria:{{furniture.category}}</label>
               </label>
             </div>
-          </div>
-
-          <div class="form-group mb-5">
-            <label for="Detalle Materiales" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Detalle Materiales</label>
-            <textarea rows="5"  cols="100" [(ngModel)]="collection.detalleMateriales"></textarea>
           </div>
           
         <div class="form-group mb-5" style="margin-top: 20px;">
