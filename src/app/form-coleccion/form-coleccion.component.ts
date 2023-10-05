@@ -19,7 +19,7 @@ export class FormColeccionComponent {
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
-  collection=new CollectionDTO(new Date(),new Date(),new Date());
+  collection=new CollectionDTO(null,null,null);
   submitted=false;
   onSubmit(form:NgForm){
     if(form.valid){
