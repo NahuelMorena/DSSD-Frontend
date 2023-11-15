@@ -6,6 +6,8 @@ import { FurnitureService } from '../services/furniture-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CollectionDTO } from '../modelos/collection-dto';
 import { CollectionService } from '../services/collection-service';
+import { EstablishMaterialsComponent } from '../establish-materials/establish-materials.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-coleccion',
@@ -15,7 +17,7 @@ import { CollectionService } from '../services/collection-service';
 })
 export class FormColeccionComponent {
 
-  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService){
+  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService,private router: Router){
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
@@ -58,6 +60,9 @@ export class FormColeccionComponent {
       (response)=> {
         console.log(response);
         window.alert("Coleccion creada exitosamente")
+        this.router.navigate(["/establecerMateriales"],{
+          queryParams:{collectionId:response.id}
+        })
       },
       (error:HttpErrorResponse)=>{
         console.error("Error al crear la colección ", error)

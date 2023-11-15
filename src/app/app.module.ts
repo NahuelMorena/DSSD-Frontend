@@ -6,11 +6,17 @@ import { FormColeccionComponent } from './form-coleccion/form-coleccion.componen
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReserveMaterialsComponent } from './reserve-materials/reserve-materials.component';
+import { EstablishMaterialsComponent } from './establish-materials/establish-materials.component';
+import { MaterialService } from './services/material-service';
+import { CollectionService } from './services/collection-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormColeccionComponent
+    FormColeccionComponent,
+    ReserveMaterialsComponent,
+    EstablishMaterialsComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MaterialService,CollectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

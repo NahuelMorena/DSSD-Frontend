@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { Furniture } from "../modelos/furniture";
 import { Collection } from "../modelos/collection";
 import { CollectionDTO } from "../modelos/collection-dto";
+import { MaterialRequestDto } from "../modelos/material-request-dto";
+import { OffersByApiDTO } from "../modelos/offers-by-api-dto";
 
 @Injectable()
 export class CollectionService {
@@ -12,5 +14,9 @@ export class CollectionService {
     
       public createCollection(collection:CollectionDTO):Observable<Collection> {
         return this.http.post<Collection>(this.url+"/create-collection", collection,{withCredentials:true});
+      }
+
+      public confirmMaterials(materialRequest:MaterialRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/establishMaterials",materialRequest,{withCredentials:true,responseType: 'text' as "json"})
       }
     }

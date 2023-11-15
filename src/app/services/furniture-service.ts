@@ -11,4 +11,4 @@ export class FurnitureService {
       public getFurnitures():Observable<Furniture[]> {
         return this.http.get<Furniture[]>(this.url+"/get-furnitures",{withCredentials:true});
       }
-    }
+}
