@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Category } from '../modelos/category';
 import { Furniture } from '../modelos/furniture';
 import { FurnitureService } from '../services/furniture-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CollectionDTO } from '../modelos/collection-dto';
 import { CollectionService } from '../services/collection-service';
-import { EstablishMaterialsComponent } from '../establish-materials/establish-materials.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -60,9 +58,6 @@ export class FormColeccionComponent {
       (response)=> {
         console.log(response);
         window.alert("Coleccion creada exitosamente")
-        this.router.navigate(["/establecerMateriales"],{
-          queryParams:{collectionId:response.id}
-        })
       },
       (error:HttpErrorResponse)=>{
         console.error("Error al crear la colección ", error)

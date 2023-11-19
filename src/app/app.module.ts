@@ -10,21 +10,26 @@ import { ReserveMaterialsComponent } from './reserve-materials/reserve-materials
 import { EstablishMaterialsComponent } from './establish-materials/establish-materials.component';
 import { MaterialService } from './services/material-service';
 import { CollectionService } from './services/collection-service';
+import { ListTasksOperationAreaComponent } from './list-tasks-operation-area/list-tasks-operation-area.component';
+import { BonitaService } from './services/bonita-service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormColeccionComponent,
     ReserveMaterialsComponent,
-    EstablishMaterialsComponent
+    EstablishMaterialsComponent,
+    ListTasksOperationAreaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService],
+  providers: [MaterialService,CollectionService,BonitaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,8 +17,8 @@ export class EstablishMaterialsComponent {
 
   constructor(private collectionService:CollectionService,private materialService:MaterialService,private activatedRoute: ActivatedRoute,private router:Router){
     this.getMaterials();
-    this.activatedRoute.queryParams.subscribe(params=>{
-    this.collectionId= params["collectionId"];
+    this.activatedRoute.params.subscribe(params=>{
+    this.collectionId= params["id"];
       if(this.collectionId!=-1){
         console.log("ID de la coleccion es ",this.collectionId);
       }
