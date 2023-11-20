@@ -13,6 +13,10 @@ import { CollectionService } from './services/collection-service';
 import { ListTasksOperationAreaComponent } from './list-tasks-operation-area/list-tasks-operation-area.component';
 import { BonitaService } from './services/bonita-service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth-service';
+import { HomeComponent } from './home/home.component';
+import { UserService } from './services/user-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormColeccionComponent,
     ReserveMaterialsComponent,
     EstablishMaterialsComponent,
-    ListTasksOperationAreaComponent
+    ListTasksOperationAreaComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { TaskStablishMaterialsDTO } from "../modelos/task-stablish-materials-dto";
+import { LoginRequest } from "../modelos/requestDto/login-request";
 
 @Injectable()
 export class BonitaService {
