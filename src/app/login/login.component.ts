@@ -5,6 +5,7 @@ import { BonitaService } from '../services/bonita-service';
 import { LoginRequest } from '../modelos/requestDto/login-request';
 import { AuthService } from '../services/auth-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from '../services/user-service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent {
   lr:LoginRequest=new LoginRequest("","");
   submitted=false;
-  constructor(private router: Router,private authService:AuthService){
+  constructor(private router: Router,private authService:AuthService,private userService:UserService){
    }
    
 
@@ -27,6 +28,11 @@ export class LoginComponent {
   loginUsuario(): void {
     this.authService.login(this.lr).subscribe(
       (response)=>{
+        this.userService.getRolFromServer().subscribe(
+          (response)=>{
+            this.userService.setRol(response);
+          }
+        )
         this.router.navigate(["/"])
       },
       (error:HttpErrorResponse)=>{

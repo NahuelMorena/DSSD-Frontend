@@ -7,6 +7,7 @@ import { Material } from '../modelos/material';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CollectionService } from '../services/collection-service';
 import { MaterialRequestDto } from '../modelos/material-request-dto';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-establish-materials',
@@ -15,7 +16,8 @@ import { MaterialRequestDto } from '../modelos/material-request-dto';
 })
 export class EstablishMaterialsComponent {
 
-  constructor(private collectionService:CollectionService,private materialService:MaterialService,private activatedRoute: ActivatedRoute,private router:Router){
+  constructor(private collectionService:CollectionService,private materialService:MaterialService,private activatedRoute: ActivatedRoute,
+    private router:Router,private authService:AuthService){
     this.getMaterials();
     this.activatedRoute.params.subscribe(params=>{
     this.collectionId= params["id"];
@@ -44,7 +46,13 @@ export class EstablishMaterialsComponent {
         }
       }
       ,(error:HttpErrorResponse)=>{
-        console.log("No se pueden recuperar los materiales "+error.status)
+        if(error.status==401){
+          this.authService.borrarEstadoPersistido()
+          this.router.navigate(["/login"])
+        }
+        else if(error.status==403){
+          this.router.navigate(["/"])
+        }
       }
     );
     

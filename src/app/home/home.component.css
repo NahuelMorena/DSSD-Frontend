@@ -1,0 +1,13 @@
+.large-btn {
+    background-color: rgb(221, 4, 43);
+    color: white;
+    padding: 150px 100px;
+    font-size: 18px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .large-btn:hover {
+    background-color: #ad031e;
+  }

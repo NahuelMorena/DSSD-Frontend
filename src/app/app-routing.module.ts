@@ -10,10 +10,10 @@ import { AuthService } from './services/auth-service';
 
 
 const routes: Routes = [
-  {path: 'crearColeccion',component:FormColeccionComponent},
-  {path: 'establecerMateriales/:id',component:EstablishMaterialsComponent},
-  {path:'reservarMateriales',component:ReserveMaterialsComponent},
-  {path:'listadoTareas',component:ListTasksOperationAreaComponent},
+  {path: 'crearColeccion',component:FormColeccionComponent,canActivate:[AuthService]},
+  {path: 'establecerMateriales/:id',component:EstablishMaterialsComponent,canActivate:[AuthService]},
+  {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
+  {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
   {path:'login',component:LoginComponent},
   {path:"",component:HomeComponent,canActivate:[AuthService]}
 

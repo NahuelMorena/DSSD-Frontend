@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TaskStablishMaterialsDTO } from '../modelos/task-stablish-materials-dto';
 import { BonitaService } from '../services/bonita-service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-list-tasks-operation-area',
@@ -13,7 +15,7 @@ export class ListTasksOperationAreaComponent {
   page=1
   count=0
   itemsPerPage=8
-  constructor(private bonitaService: BonitaService,private router:Router){
+  constructor(private bonitaService: BonitaService,private router:Router,private authService:AuthService){
     this.getTasks()
   }
 
@@ -22,6 +24,15 @@ export class ListTasksOperationAreaComponent {
     this.bonitaService.getTasks().subscribe(
       (tasks)=>{
         this.tasks=tasks;
+      },
+      (error:HttpErrorResponse)=>{
+        if(error.status==401){
+          this.authService.borrarEstadoPersistido();
+          this.router.navigate(["/login"])
+        }
+        else if(error.status==403){
+          this.router.navigate(["/"])
+        }
       }
     )
   }

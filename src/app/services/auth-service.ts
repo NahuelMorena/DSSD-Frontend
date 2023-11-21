@@ -22,6 +22,14 @@ export class AuthService{
 
       }
 
+      public logout():Observable<any>{
+        return this.http.get<any>("http://localhost:8080/logout",{withCredentials:true}).pipe(
+          tap(response=> {
+            this.borrarEstadoPersistido()
+          })
+        )
+      }
+
       public isLogeado(): boolean {
         return this.estaLogeado;
       }

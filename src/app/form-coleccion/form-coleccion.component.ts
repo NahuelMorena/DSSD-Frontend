@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CollectionDTO } from '../modelos/collection-dto';
 import { CollectionService } from '../services/collection-service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-form-coleccion',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class FormColeccionComponent {
 
-  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService,private router: Router){
+  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService,private router: Router,private authService:AuthService){
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
@@ -37,7 +38,13 @@ export class FormColeccionComponent {
         this.furnitures=muebles;
       }
       ,(error:HttpErrorResponse)=>{
-        console.log("No se pueden recuperar los muebles "+error.status)
+        if(error.status==401){
+          this.authService.borrarEstadoPersistido();
+          this.router.navigate(["/login"])
+        }
+        else if(error.status==403){
+          this.router.navigate(["/"])
+        }
       }
     );
     

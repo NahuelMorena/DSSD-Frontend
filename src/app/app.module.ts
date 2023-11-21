@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth-service';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user-service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserService } from './services/user-service';
     EstablishMaterialsComponent,
     ListTasksOperationAreaComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

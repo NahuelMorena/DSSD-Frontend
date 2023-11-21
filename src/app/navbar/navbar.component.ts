@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth-service';
+import { UserService } from '../services/user-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../services/auth-service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class HomeComponent {
-  constructor(private userService:UserService,private route:Router,private authService:AuthService){
+export class NavbarComponent {
+
+  rol:string="";
+
+  constructor(private route:Router,private userService:UserService,private authService:AuthService){
     this.getRol()
   }
 
-  rol=""
   getRol(){
     this.userService.getRol().subscribe(
       (response)=>{
@@ -33,8 +35,18 @@ export class HomeComponent {
             }
           )
         }
-        if(this.rol=="CREATIVE"){
-          this.route.navigate(["/crearColeccion"])
+      }
+    )
+  }
+
+  logout(){
+    this.authService.logout().subscribe(
+      (response) => {
+        this.route.navigate(["/login"])
+      },
+      (error:HttpErrorResponse)=>{
+        if(error.status==401){
+          this.route.navigate(["/login"])
         }
       }
     )
