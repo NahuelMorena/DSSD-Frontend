@@ -20,6 +20,7 @@ export class HomeComponent {
       (response)=>{
         this.rol=response;
         if(this.rol===""){
+          console.log("va a ejecutar el rol del server");
           this.userService.getRolFromServer().subscribe(
             (response)=>{
               this.rol=response;
@@ -27,6 +28,7 @@ export class HomeComponent {
             },
             (error:HttpErrorResponse)=>{
               if(error.status==401){
+                console.log("recibio que no esta iniciada la sesion")
                 this.authService.borrarEstadoPersistido();
                 this.route.navigate(["/"])
               }

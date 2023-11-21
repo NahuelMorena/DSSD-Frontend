@@ -23,7 +23,7 @@ export class AuthService{
       }
 
       public logout():Observable<any>{
-        return this.http.get<any>("http://localhost:8080/logout",{withCredentials:true}).pipe(
+        return this.http.get<any>("http://localhost:8080/logout",{withCredentials:true,responseType: 'text' as "json"}).pipe(
           tap(response=> {
             this.borrarEstadoPersistido()
           })
