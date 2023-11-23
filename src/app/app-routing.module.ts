@@ -11,7 +11,7 @@ import { AuthService } from './services/auth-service';
 
 const routes: Routes = [
   {path: 'crearColeccion',component:FormColeccionComponent,canActivate:[AuthService]},
-  {path: 'establecerMateriales/:id',component:EstablishMaterialsComponent,canActivate:[AuthService]},
+  {path: 'establecerMateriales/:id/:idCase',component:EstablishMaterialsComponent,canActivate:[AuthService]},
   {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
   {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
   {path:'login',component:LoginComponent},
