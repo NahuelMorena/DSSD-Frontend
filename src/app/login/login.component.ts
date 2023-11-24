@@ -36,8 +36,9 @@ export class LoginComponent {
         this.router.navigate(["/"])
       },
       (error:HttpErrorResponse)=>{
-        window.alert(error.error)
-        console.log(error)
+        if(error.status==401){
+          window.alert(error.error)
+        }
       }
     )
   }

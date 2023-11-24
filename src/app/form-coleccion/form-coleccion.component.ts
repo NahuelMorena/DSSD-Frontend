@@ -20,13 +20,14 @@ export class FormColeccionComponent {
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
-  collection=new CollectionDTO(null,null,null);
+  collection=new CollectionDTO(null,null,null,0);
   submitted=false;
   onSubmit(form:NgForm){
-    if(form.valid){
+    if (form.valid && this.collection.units > 0 && this.validateDates()){
       this.collection.date_start_manufacture=form.value.date_start_manufacture;
       this.collection.date_end_manufacture=form.value.date_end_manufacture;
       this.collection.estimated_release_date=form.value.estimated_release_date
+      this.collection.units=form.value.units;
       this.submitted=true;
       this.createCollection();
     }
@@ -49,6 +50,23 @@ export class FormColeccionComponent {
     );
     
   }
+
+validateDates(): boolean {
+  if(this.collection.date_start_manufacture!=null && this.collection.date_end_manufacture!=null && this.collection.estimated_release_date!=null){
+    var startDate = new Date(this.collection.date_start_manufacture);
+    var endDate = new Date(this.collection.date_end_manufacture);
+    var estimatedDate = new Date(this.collection.estimated_release_date);
+
+    if (startDate <= endDate && endDate <= estimatedDate) {
+      return true;
+    } else {
+      window.alert('Las fechas no cumplen las condiciones');
+      return false;
+    }
+  }else{
+    return false;
+  }
+}
 
   toggleSelection(furniture: Furniture) {
     const index = this.collection.furnitures.indexOf(furniture);
