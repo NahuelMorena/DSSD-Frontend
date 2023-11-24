@@ -20,7 +20,7 @@
                 <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.date_end_manufacture }}</td>
                 <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.estimated_release_date }}</td>
                 <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center">
-                    <button class="btn btn-success" [routerLink]="['/establecerMateriales', task.idCollection, task.idCase]" style="margin-left: 10px;">Avanzar</button> 
+                    <button class="btn btn-success" [routerLink]="['/planificarOrdenesDeDistribucion', task.idCollection, task.idCase]" style="margin-left: 10px;">Avanzar</button> 
              </tr>
         </tbody>
     </table>

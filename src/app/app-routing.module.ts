@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:"",component:HomeComponent,canActivate:[AuthService]},
   {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
-  {path:'planificarOrdenesDeDistribucion',component:DistributionOrderPlanningComponent,canActivate:[AuthService]}
+  {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({

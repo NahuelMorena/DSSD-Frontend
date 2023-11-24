@@ -20,6 +20,7 @@ import { UserService } from './services/user-service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/list-tasks-commercial-area.component';
 import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
+import { StoreService } from './services/store-service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { DistributionOrderPlanningComponent } from './distribution-order-plannin
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
