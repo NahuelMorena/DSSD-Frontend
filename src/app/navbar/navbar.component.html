@@ -33,6 +33,35 @@
         </div>
       </nav>
     </div>
-<div class="container px-4 py-5" *ngIf="rol == 'COMMERCIAL'">
-    <h1 style="text-align: center; margin-top: 35px;">NAVBAR AREA COMERCIAL</h1>
+<div *ngIf="rol == 'COMMERCIAL'">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoPlanificarDistribucion']">Planificar orden de distribución</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"[routerLink]="['/']">Lanzar colección</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']">Consultas</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/logo_usuario.png" alt="Imagen" height="40">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>

@@ -18,6 +18,8 @@ import { AuthService } from './services/auth-service';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user-service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/list-tasks-commercial-area.component';
+import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ListTasksOperationAreaComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ListTasksCommercialAreaComponent,
+    DistributionOrderPlanningComponent
   ],
   imports: [
     BrowserModule,

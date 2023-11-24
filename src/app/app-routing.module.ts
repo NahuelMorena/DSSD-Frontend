@@ -4,9 +4,11 @@ import { FormColeccionComponent } from './form-coleccion/form-coleccion.componen
 import { EstablishMaterialsComponent } from './establish-materials/establish-materials.component';
 import { ReserveMaterialsComponent } from './reserve-materials/reserve-materials.component';
 import { ListTasksOperationAreaComponent } from './list-tasks-operation-area/list-tasks-operation-area.component';
+import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './services/auth-service';
+import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/list-tasks-commercial-area.component';
 
 
 const routes: Routes = [
@@ -15,8 +17,9 @@ const routes: Routes = [
   {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
   {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
   {path:'login',component:LoginComponent},
-  {path:"",component:HomeComponent,canActivate:[AuthService]}
-
+  {path:"",component:HomeComponent,canActivate:[AuthService]},
+  {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
+  {path:'planificarOrdenesDeDistribucion',component:DistributionOrderPlanningComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({

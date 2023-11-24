@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { TaskDTO } from '../modelos/task-dto';
 import { BonitaService } from '../services/bonita-service';
-import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../services/auth-service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-tasks-operation-area',
-  templateUrl: './list-tasks-operation-area.component.html',
-  styleUrls: ['./list-tasks-operation-area.component.css']
+  selector: 'app-list-tasks-commercial-area',
+  templateUrl: './list-tasks-commercial-area.component.html',
+  styleUrls: ['./list-tasks-commercial-area.component.css']
 })
-export class ListTasksOperationAreaComponent {
+export class ListTasksCommercialAreaComponent {
   tasks:TaskDTO[]=[]
   page=1
   count=0
@@ -19,9 +19,8 @@ export class ListTasksOperationAreaComponent {
     this.getTasks()
   }
 
-
   getTasks():void{
-    this.bonitaService.getStablishMaterialsTasks().subscribe(
+    this.bonitaService.getPlanDitributionOrdersTasks().subscribe(
       (tasks)=>{
         this.tasks=tasks;
       },
