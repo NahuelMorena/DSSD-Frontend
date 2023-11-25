@@ -20,6 +20,7 @@ import { UserService } from './services/user-service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-qu
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

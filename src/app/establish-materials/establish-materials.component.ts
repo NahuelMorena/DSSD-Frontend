@@ -83,7 +83,7 @@ export class EstablishMaterialsComponent {
       let materialRequest=new MaterialRequestDto(this.collectionId,this.selectedMaterials,this.idCase);
       this.collectionService.confirmMaterials(materialRequest).subscribe(
         (response)=>{
-          this.router.navigate(["/reservarMateriales"])
+          this.router.navigate(["/consultaApi/"+this.collectionId+"/"+this.idCase])
         },
         (error:HttpErrorResponse)=>{
           console.log(error);

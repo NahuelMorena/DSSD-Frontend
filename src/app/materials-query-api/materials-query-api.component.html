@@ -2,12 +2,14 @@
 <div class="row">
     <div class="col-3">
             <span class="filter-label">Fecha de entrega:</span>
+            <form #dateForm="ngForm" (ngSubmit)="onSubmit(dateForm)">
             <div>
                 <div class="input-group">
-                    <input type="date" class="form-control" style="font-size: 20px"/>
-                    <button (click)="getOffers()" aria-expanded="false" style="margin-left: 5px;;background: none; border: none" > <img src="/assets/search.png" alt="Buscar" style="width: 40px; height: 40px" /></button>
+                    <input [(ngModel)]="date" type="date" class="form-control" style="font-size: 20px" required id="date" name="date"/>
+                    <button type="submit" aria-expanded="false" style="margin-left: 5px;;background: none; border: none" > <img src="/assets/search.png" alt="Buscar" style="width: 40px; height: 40px" /></button>
                 </div>
             </div>
+        </form>
     </div>
 </div>
 <div class="container d-flex justify-content-center align-items-center">
@@ -33,5 +35,11 @@
          </tr>
     </tbody>
 </table>
+</div>
+<div *ngIf="allMaterialsFound() && formExecuted" class="text-center">
+    <button class="btn btn-success" (click)="advance()">Avanzar</button>
+</div>
+<div *ngIf="! allMaterialsFound() && formExecuted" class="text-center">
+   <p>No se encontraron ofertas para todos los materiales</p>
 </div>
 

@@ -16,4 +16,8 @@ export class BonitaService {
       public getTasksQueryApi():Observable<TaskStablishMaterialsDTO[]>{
         return this.http.get<TaskStablishMaterialsDTO[]>(this.url+"/getTasksQueryApi",{withCredentials:true})
       }
+
+      public nextTaskAPIQuery(idCase:number):Observable<any>{
+        return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
+      }
     }
