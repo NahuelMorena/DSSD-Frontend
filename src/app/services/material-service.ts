@@ -12,4 +12,8 @@ export class MaterialService {
       public getMaterials():Observable<Material[]> {
         return this.http.get<Material[]>(this.url+"/get-materials",{withCredentials:true});
       }
+
+      public getMaterialsInCollection(collectionId:number):Observable<MaterialDto[]>{
+        return this.http.get<MaterialDto[]>(this.url+"/getMaterialsCollection/"+collectionId,{withCredentials:true})
+      }
 }

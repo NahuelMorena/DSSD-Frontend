@@ -18,6 +18,8 @@ import { AuthService } from './services/auth-service';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user-service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
+import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ListTasksOperationAreaComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    MaterialsQueryApiComponent,
+    ListTasksQueryApiComponent
   ],
   imports: [
     BrowserModule,

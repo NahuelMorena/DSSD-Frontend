@@ -19,4 +19,9 @@ export class CollectionService {
       public confirmMaterials(materialRequest:MaterialRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/establishMaterials",materialRequest,{withCredentials:true,responseType: 'text' as "json"})
       }
+
+      public searchOffers(idCollection:number):Observable<OffersByApiDTO[]>{
+        return this.http.get<OffersByApiDTO[]>(this.url+"/search-material-offers/"+idCollection,{withCredentials:true})
+      }
+
     }

@@ -1,0 +1,37 @@
+<h3 style="font-family: Times New Roman, sans-serif; margin-bottom: 40px; margin-top: 20px;" class="font-weight-bold text-center">Listado de ofertas de materiales</h3>
+<div class="row">
+    <div class="col-3">
+            <span class="filter-label">Fecha de entrega:</span>
+            <div>
+                <div class="input-group">
+                    <input type="date" class="form-control" style="font-size: 20px"/>
+                    <button (click)="getOffers()" aria-expanded="false" style="margin-left: 5px;;background: none; border: none" > <img src="/assets/search.png" alt="Buscar" style="width: 40px; height: 40px" /></button>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="container d-flex justify-content-center align-items-center">
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Nombre</th>
+            <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Cantidad</th>
+            <th style="font-family:  Helvetica, sans-serif;" class="text-center">¿Hay disponibilidad?</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let material of materials">
+            <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ material.name }}</td>
+            <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ material.quantity }}</td>
+            <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center">
+                <span *ngIf="foundMaterial(material.name)">
+                   Si
+                </span>
+                <span *ngIf="!foundMaterial(material.name)">
+                    No
+                </span>
+         </tr>
+    </tbody>
+</table>
+</div>
+

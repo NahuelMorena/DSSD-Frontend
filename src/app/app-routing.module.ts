@@ -7,6 +7,8 @@ import { ListTasksOperationAreaComponent } from './list-tasks-operation-area/lis
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './services/auth-service';
+import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
+import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'establecerMateriales/:id/:idCase',component:EstablishMaterialsComponent,canActivate:[AuthService]},
   {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
   {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
+  {path:'listadoConsultarApi',component:ListTasksQueryApiComponent,canActivate:[AuthService]},
+  {path:"consultaApi/:id/:idCase",component:MaterialsQueryApiComponent,canActivate:[AuthService]},
   {path:'login',component:LoginComponent},
   {path:"",component:HomeComponent,canActivate:[AuthService]}
 
