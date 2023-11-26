@@ -20,7 +20,7 @@ export class FormColeccionComponent {
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
-  collection=new CollectionDTO(null,null,null,0);
+  collection=new CollectionDTO(null,null,null,0,"");
   submitted=false;
   onSubmit(form:NgForm){
     if (form.valid && this.collection.units > 0 && this.validateDates()){
@@ -28,6 +28,7 @@ export class FormColeccionComponent {
       this.collection.date_end_manufacture=form.value.date_end_manufacture;
       this.collection.estimated_release_date=form.value.estimated_release_date
       this.collection.units=form.value.units;
+      this.collection.mail=form.value.mail;
       this.submitted=true;
       this.createCollection();
     }
