@@ -36,6 +36,11 @@
             <label for="units" style="font-size: 1.8rem;  font-family:  Helvetica, sans-serif;">Cantidad</label>
             <input type="number"  required class="form-control form-control-lg" id="units" name="units" placeholder="Cantidad" [(ngModel)]="collection.units">
         </div>
+
+          <div class="form-group mb-5" style="margin-top: 20px;">
+            <label for="mail" style="font-size: 1.8rem;  font-family:  Helvetica, sans-serif;">Email de contacto</label>
+            <input type="text"  required class="form-control form-control-lg" id="mail" name="mail" placeholder="Email" [(ngModel)]="collection.mail">
+          </div>
             
         <button type="submit" class="btn btn-success">Confirmar</button>
       </form>
