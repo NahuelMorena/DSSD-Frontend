@@ -16,4 +16,8 @@ export class BonitaService {
       public getPlanDitributionOrdersTasks():Observable<TaskDTO[]> {
         return this.http.get<TaskDTO[]>(this.url+"/planDistributionOrders", {withCredentials:true});
       }
+
+      public getLaunchCollectionTasks():Observable<TaskDTO[]> {
+        return this.http.get<TaskDTO[]>(this.url+"/launchCollection", {withCredentials:true});
+      }
     }

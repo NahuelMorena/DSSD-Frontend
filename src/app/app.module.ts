@@ -21,6 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/list-tasks-commercial-area.component';
 import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
 import { StoreService } from './services/store-service';
+import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-commercial-area-launch-collections/list-tasks-commercial-area-launch-collections.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StoreService } from './services/store-service';
     HomeComponent,
     NavbarComponent,
     ListTasksCommercialAreaComponent,
-    DistributionOrderPlanningComponent
+    DistributionOrderPlanningComponent,
+    ListTasksCommercialAreaLaunchCollectionsComponent
   ],
   imports: [
     BrowserModule,

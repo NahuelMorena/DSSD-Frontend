@@ -7,6 +7,7 @@ import { CollectionDTO } from "../modelos/collection-dto";
 import { MaterialRequestDto } from "../modelos/material-request-dto";
 import { OffersByApiDTO } from "../modelos/offers-by-api-dto";
 import { OrderRequestDto } from "../modelos/order-request-dto";
+import { LaunchRequestDto } from "../modelos/launch-request-dto";
 
 @Injectable()
 export class CollectionService {
@@ -27,5 +28,9 @@ export class CollectionService {
 
       public setDistributionOrder(orderRequest:OrderRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/set-distribution-order",orderRequest,{withCredentials:true,responseType: 'text' as "json"})
+      }
+
+      public launchCollection(launchRequest:LaunchRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/launch-to-market",launchRequest,{withCredentials:true,responseType: "text" as "json"})
       }
     }
