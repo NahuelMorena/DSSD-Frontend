@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { TaskDTO } from "../modelos/task-dto";
 import { LoginRequest } from "../modelos/requestDto/login-request";
+import { ArchivedCaseDTO } from "../modelos/archived-case-dto";
 
 @Injectable()
 export class BonitaService {
@@ -27,5 +28,9 @@ export class BonitaService {
 
       public nextTaskAPIQuery(idCase:number):Observable<any>{
         return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
+      }
+
+      public getArchivedCases():Observable<ArchivedCaseDTO[]>{
+        return this.http.get<ArchivedCaseDTO[]>(this.url+"/getArchivedCases",{withCredentials:true})
       }
     }

@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
   {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
-  {path: 'estadisticas', component:StatisticsComponent}
+  {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({
