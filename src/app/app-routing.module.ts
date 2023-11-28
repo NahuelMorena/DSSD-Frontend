@@ -12,6 +12,7 @@ import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/l
 import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-commercial-area-launch-collections/list-tasks-commercial-area-launch-collections.component';
 import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:"",component:HomeComponent,canActivate:[AuthService]},
   {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
-  {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]}
+  {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
+  {path: 'estadisticas', component:StatisticsComponent}
 ];
 
 @NgModule({
