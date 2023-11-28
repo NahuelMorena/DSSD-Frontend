@@ -22,6 +22,9 @@ import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/l
 import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
 import { StoreService } from './services/store-service';
 import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-commercial-area-launch-collections/list-tasks-commercial-area-launch-collections.component';
+import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
+import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-
     NavbarComponent,
     ListTasksCommercialAreaComponent,
     DistributionOrderPlanningComponent,
-    ListTasksCommercialAreaLaunchCollectionsComponent
+    ListTasksCommercialAreaLaunchCollectionsComponent,
+    MaterialsQueryApiComponent,
+    ListTasksQueryApiComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

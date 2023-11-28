@@ -20,4 +20,12 @@ export class BonitaService {
       public getLaunchCollectionTasks():Observable<TaskDTO[]> {
         return this.http.get<TaskDTO[]>(this.url+"/launchCollection", {withCredentials:true});
       }
+
+      public getTasksQueryApi():Observable<TaskDTO[]>{
+        return this.http.get<TaskDTO[]>(this.url+"/getTasksQueryApi",{withCredentials:true})
+      }
+
+      public nextTaskAPIQuery(idCase:number):Observable<any>{
+        return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
+      }
     }
