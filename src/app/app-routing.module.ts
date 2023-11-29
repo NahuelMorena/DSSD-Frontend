@@ -13,12 +13,13 @@ import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-
 import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
 
 
 const routes: Routes = [
   {path: 'crearColeccion',component:FormColeccionComponent,canActivate:[AuthService]},
   {path: 'establecerMateriales/:id/:idCase',component:EstablishMaterialsComponent,canActivate:[AuthService]},
-  {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
+  {path:'reservarMateriales/:id/:idCase',component:ReserveMaterialsComponent,canActivate:[AuthService]},
   {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
   {path:'listadoConsultarApi',component:ListTasksQueryApiComponent,canActivate:[AuthService]},
   {path:"consultaApi/:id/:idCase",component:MaterialsQueryApiComponent,canActivate:[AuthService]},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
   {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
-  {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]}
+  {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]},
+  {path:'listadoReservaProveedor',component:ListTaskReserveProviderComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({

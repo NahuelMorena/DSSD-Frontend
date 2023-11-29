@@ -1,0 +1,37 @@
+<div *ngIf="tasks.length>0; else notTasks">
+    <h3 style="font-family: Times New Roman, sans-serif; margin-bottom: 40px; margin-top: 20px;" class="font-weight-bold text-center">Listado de tareas reservar proveedor/reciclador</h3>
+    <div class="container d-flex justify-content-center align-items-center">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Número de caso</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Tarea</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Fecha inicio de fabricación</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Fecha fin de fabricación</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Fecha estimada de lanzamiento</th>
+                <th style="font-family:  Helvetica, sans-serif;" class="text-center">Acciones</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let task of tasks | paginate: { itemsPerPage: itemsPerPage, currentPage: page,totalItems:count }">
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.idCase }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.name }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.date_start_manufacture }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.date_end_manufacture }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ task.estimated_release_date }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center">
+                    <button class="btn btn-success" [routerLink]="['/reservarMateriales', task.idCollection, task.idCase]" style="margin-left: 10px;">Avanzar</button> 
+             </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        <pagination-controls previousLabel="Ant" nextLabel="Sig" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+    </div>
+    <ng-template #notTasks>
+        <div class="container">
+            <h1 style="text-align: center;">No existen tareas pertenecientes a Reservar proveedor/reciclador</h1>
+        </div>
+    </ng-template>

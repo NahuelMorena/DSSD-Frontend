@@ -40,7 +40,7 @@ export class MaterialsQueryApiComponent {
 
   onSubmit(form:NgForm){
     var dateString:String = form.value.date;
-     var parts=dateString.split("-");
+    var parts=dateString.split("-");
     var year = parseInt(parts[0], 10);
     var month = parseInt(parts[1], 10) - 1; 
     var day = parseInt(parts[2], 10);
@@ -92,6 +92,7 @@ export class MaterialsQueryApiComponent {
       const materialName = offer.material.name;
       if (this.quantitiesByName[materialName]) {
           this.quantitiesByName[materialName] += offer.quantity_available;
+          console.log(this.quantitiesByName[materialName]);
       } else {
           this.quantitiesByName[materialName] = offer.quantity_available;
     }
@@ -101,8 +102,6 @@ export class MaterialsQueryApiComponent {
   foundMaterial(name:string):boolean{
     var material=this.materials.find(material=>material.name===name);
     if(material!=undefined){
-      console.log(this.quantitiesByName[name])
-      console.log(material.quantity)
       return this.quantitiesByName[name]>=material.quantity;
     }
     else
@@ -114,12 +113,13 @@ export class MaterialsQueryApiComponent {
   }
 
   advance(){
-    this.bonitaService.nextTaskAPIQuery(this.caseId).subscribe(
+    this.bonitaService.nextTaskAPIQuery(this.caseId,this.date).subscribe(
       (response)=>{
-        this.router.navigate(["/reservarMateriales"])
+        this.router.navigate(["/reservarMateriales/"+this.collectionId+"/"+this.caseId])
       },
       (error:HttpErrorResponse)=>{
-        window.alert("Ocurrio un error")
+        window.alert(error)
+        console.log(error)
       }
       
     )

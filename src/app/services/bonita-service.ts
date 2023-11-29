@@ -4,11 +4,12 @@ import { Observable } from "rxjs";
 import { TaskDTO } from "../modelos/task-dto";
 import { LoginRequest } from "../modelos/requestDto/login-request";
 import { ArchivedCaseDTO } from "../modelos/archived-case-dto";
+import { DatePipe } from "@angular/common";
 
 @Injectable()
 export class BonitaService {
     private url='http://localhost:8080/api/bonita'
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient,private datePipe:DatePipe) {}
     
       public getStablishMaterialsTasks():Observable<TaskDTO[]> {
         return this.http.get<TaskDTO[]>(this.url+"/getTasksStablishMaterials", {withCredentials:true});
@@ -26,11 +27,24 @@ export class BonitaService {
         return this.http.get<TaskDTO[]>(this.url+"/getTasksQueryApi",{withCredentials:true})
       }
 
-      public nextTaskAPIQuery(idCase:number):Observable<any>{
-        return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
+      public nextTaskAPIQuery(idCase:number,dateForm:Date):Observable<any>{
+        var formattedDate = this.datePipe.transform(dateForm, 'dd-MM-yyyy');
+        return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,formattedDate,{withCredentials:true,responseType: 'text' as "json"})
       }
 
       public getArchivedCases():Observable<ArchivedCaseDTO[]>{
         return this.http.get<ArchivedCaseDTO[]>(this.url+"/getArchivedCases",{withCredentials:true})
+      }
+
+      public getTasksReserveProvider():Observable<TaskDTO[]>{
+        return this.http.get<TaskDTO[]>(this.url+"/getTasksReserveProvider",{withCredentials:true})
+      }
+
+      public getQueryDate(idCase:number):Observable<Date>{
+        return this.http.get<Date>(this.url+"/getQueryDate/"+idCase,{withCredentials:true})
+      }
+
+      public nextTaskReserveMaterial(idCase:number):Observable<any>{
+        return this.http.post<any>(this.url+"/nextTaskReserveMaterials/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
       }
     }

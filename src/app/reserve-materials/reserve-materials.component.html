@@ -1,1 +1,39 @@
-<p>Mostrar ofertas</p>
+<div *ngIf="offers.length>0; else notOffers">
+    <h3 style="font-family: Times New Roman, sans-serif; margin-bottom: 40px; margin-top: 20px;" class="font-weight-bold text-center">Listado de ofertas</h3>
+    <div class="container d-flex justify-content-center align-items-center">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Material</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Proveedor</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Cantidad disponible</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Precio</th>
+                <th style="font-family:  Helvetica, sans-serif;"  class="text-center">Fecha de entrega</th>
+                <th style="font-family:  Helvetica, sans-serif;" class="text-center"></th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let offer of offers ">
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ offer.material.name }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ offer.provider.name }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ offer.quantity_available }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ offer.price_by_unit }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center"> {{ offer.delivery_date_available }}</td>
+                <td style="font-family:  Helvetica, sans-serif; padding: 20px;" class="text-center">
+                    <button class="btn btn-success" (click)="reserve(offer.id, offer.quantity_available,offer.material.name)"  style="margin-left: 10px;">Reservar</button> 
+             </tr>
+        </tbody>
+    </table>
+    </div>
+    <div *ngFor="let material of materials">
+        <p class="result">Necesita reservar {{material.quantity}} del material de tipo {{material.name}}</p>
+    </div>
+    <div style="text-align: center;">
+        <button *ngIf="allQuantitiesAreZero()" class="btn btn-success" (click)="advance()">Avanzar</button>
+    </div>
+</div>
+    <ng-template #notOffers>
+        <div class="container">
+            <h1 style="text-align: center;">No se pudieron cargar las ofertas</h1>
+        </div>
+    </ng-template>
