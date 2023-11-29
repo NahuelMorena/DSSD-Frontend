@@ -14,6 +14,8 @@ export class StatisticsComponent {
   public chart: any;
   archivedCases:ArchivedCaseDTO[]=[];
   completedCases=0;
+  meanMin=0;
+  meanSeg=0;
 
   constructor(private bonitaService:BonitaService) {}
 
@@ -21,6 +23,7 @@ export class StatisticsComponent {
     this.getArchivedCases().then(()=>{
       this.calculateEvents();
       this.createChart();
+      this.calculateTime();
     })
   }
 
@@ -109,6 +112,21 @@ export class StatisticsComponent {
       }
       return count;
   }, 0);
-  console.log(this.completedCases);
+  }
+
+  calculateTime(){
+    var timeCases = this.archivedCases.map(caseItem => {
+      var endString=caseItem.end_date.toLocaleString();
+      var endObject = new Date(endString.replace(' ', 'T'));
+      var startString=caseItem.start.toLocaleString();
+      var startObject=new Date(startString.replace(" ","T"));
+      return Math.floor(Math.abs(endObject.getTime() - startObject.getTime())/(1000 * 60));
+  });
+  console.log(timeCases[0]);
+  console.log(timeCases[1]);
+  console.log(timeCases[2]);
+  var sum = timeCases.reduce((acumulador, numero) => acumulador + numero, 0);
+  this.meanMin =Math.floor( sum / timeCases.length);
+  this.meanSeg=((sum/timeCases.length) % 1)*60;
   }
 }
