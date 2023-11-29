@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth-service';
 import { DateSpacesService } from '../services/date-spaces.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DateSpace } from '../interfaces/date-space';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-reserve-space',
@@ -11,6 +12,12 @@ import { DateSpace } from '../interfaces/date-space';
   styleUrls: ['./reserve-space.component.css']
 })
 export class ReserveSpaceComponent {
+toggleSelection(_t15: DateSpace) {
+throw new Error('Method not implemented.');
+}
+onSubmit(_t10: NgForm) {
+throw new Error('Method not implemented.');
+}
   dateSpaces: DateSpace[] = [];
 
   constructor(private dateSpaceService:DateSpacesService,private router: Router,private authService:AuthService){

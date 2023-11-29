@@ -1,2 +1,24 @@
-<p>reserve-space works!</p>
-<p>{{dateSpaces}}</p>
+<div>
+    <h1 style="text-align: center;"> RESERVA DE ESPACIO DE FABRICACIÓN</h1>
+    <h2 style="margin-bottom: 20px;" class="font-weight-bold text-center" >Reservar espacio de fabricación</h2>
+</div>
+<div class="container d-flex justify-content-center align-items-center">
+  <div style="width: 75%;"> 
+      <form #collectionForm="ngForm" (ngSubmit)="onSubmit(collectionForm)" style="border: 2px solid #0a0a0a;  padding: 40px;">
+        
+        <div class="form-group mb-5">
+            <label style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Reservas Disponibles</label>
+            <div *ngFor="let dateSpace of dateSpaces">
+              <label style="font-size: 20px">
+                <input type="checkbox" name="mueble_{{dateSpace.id}}" id="mueble_{{dateSpace.id}}"
+                  [value]="dateSpace.id" (change)="toggleSelection(dateSpace)"  />
+                <label>Lugar: {{ dateSpace.manufacturingSpace.name }} - Desde el día {{dateSpace.available_from}} hasta el día: {{dateSpace.available_until}}</label>
+              </label>
+            </div>
+          </div>
+
+            
+        <button type="submit" class="btn btn-success">Confirmar</button>
+      </form>
+    </div>
+</div>
