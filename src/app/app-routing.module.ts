@@ -13,6 +13,7 @@ import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-
 import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'listadoPlanificarDistribucion',component:ListTasksCommercialAreaComponent,canActivate:[AuthService]},
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
   {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
-  {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]}
+  {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]},
+  {path: 'reservarEspacioDeFabricacion', component:ReserveSpaceComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({

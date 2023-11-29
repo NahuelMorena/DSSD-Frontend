@@ -26,6 +26,7 @@ import { MaterialsQueryApiComponent } from './materials-query-api/materials-quer
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { DatePipe } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     ListTasksCommercialAreaLaunchCollectionsComponent,
     MaterialsQueryApiComponent,
     ListTasksQueryApiComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    ReserveSpaceComponent
   ],
   imports: [
     BrowserModule,
