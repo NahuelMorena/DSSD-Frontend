@@ -14,6 +14,8 @@ import { MaterialsQueryApiComponent } from './materials-query-api/materials-quer
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
+import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
+import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
   {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
   {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]},
-  {path:'listadoReservaProveedor',component:ListTaskReserveProviderComponent,canActivate:[AuthService]}
+  {path:'listadoReservaProveedor',component:ListTaskReserveProviderComponent,canActivate:[AuthService]},
+  {path: 'listadoReservaEspacioDeFabricacion', component:ListTasksOperationAreaReserveSpaceComponent,canActivate:[AuthService]},
+  {path: 'reservarEspacioDeFabricacion/:id/:idCase', component:ReserveSpaceComponent,canActivate:[AuthService]}
 ];
 
 @NgModule({
