@@ -31,5 +31,3 @@ export interface DateSpace {
     reserves: ReserveByApiDTO[];
     manufacturingSpace: ManufacturingSpace;
 }
-
-

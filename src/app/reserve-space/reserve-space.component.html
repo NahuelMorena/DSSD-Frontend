@@ -10,7 +10,7 @@
             <label style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Reservas Disponibles</label>
             <div *ngFor="let dateSpace of dateSpaces">
               <label style="font-size: 20px">
-                <input type="checkbox" name="mueble_{{dateSpace.id}}" id="mueble_{{dateSpace.id}}"
+                <input type="radio" name="selectedSpace" id="mueble_{{dateSpace.id}}"
                   [value]="dateSpace.id" (change)="toggleSelection(dateSpace)"  />
                 <label>Lugar: {{ dateSpace.manufacturingSpace.name }} - Desde el día {{dateSpace.available_from}} hasta el día: {{dateSpace.available_until}}</label>
               </label>

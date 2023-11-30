@@ -27,6 +27,7 @@ import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-qu
 import { DatePipe } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
+import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
     MaterialsQueryApiComponent,
     ListTasksQueryApiComponent,
     StatisticsComponent,
-    ReserveSpaceComponent
+    ReserveSpaceComponent,
+    ListTasksOperationAreaReserveSpaceComponent
   ],
   imports: [
     BrowserModule,

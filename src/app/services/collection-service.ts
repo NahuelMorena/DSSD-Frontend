@@ -9,6 +9,7 @@ import { OffersByApiDTO } from "../modelos/offers-by-api-dto";
 import { OrderRequestDto } from "../modelos/order-request-dto";
 import { LaunchRequestDto } from "../modelos/launch-request-dto";
 import { DatePipe } from "@angular/common";
+import { DateSpaceRequestDto } from "../modelos/dateSpace-request-dto";
 
 
 @Injectable()
@@ -36,9 +37,12 @@ export class CollectionService {
         return this.http.post<String>(this.url+"/launch-to-market",launchRequest,{withCredentials:true,responseType: "text" as "json"})
       }
       
-      
       public searchOffers(idCollection:number,dateParameter:Date):Observable<OffersByApiDTO[]>{
         var formattedDate = this.datePipe.transform(dateParameter, 'dd-MM-yyyy');
         return this.http.get<OffersByApiDTO[]>(this.url+"/search-material-offers/"+idCollection+"?dateStart="+formattedDate,{withCredentials:true})
+      }
+
+      public reserveDatesSpace(dateSpaceRequest:DateSpaceRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/reserve-dateSpace",dateSpaceRequest,{withCredentials:true,responseType: 'text' as 'json'})
       }
 }

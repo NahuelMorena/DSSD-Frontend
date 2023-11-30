@@ -14,6 +14,10 @@ export class BonitaService {
         return this.http.get<TaskDTO[]>(this.url+"/getTasksStablishMaterials", {withCredentials:true});
       }
 
+      public getReserveDatesSpaceTasks():Observable<TaskDTO[]> {
+        return this.http.get<TaskDTO[]>(this.url+"/getTaskReserveDatesSpace", {withCredentials:true});
+      }
+
       public getPlanDitributionOrdersTasks():Observable<TaskDTO[]> {
         return this.http.get<TaskDTO[]>(this.url+"/planDistributionOrders", {withCredentials:true});
       }
