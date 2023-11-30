@@ -1,4 +1,3 @@
-
 export class DateSpaceRequestDto{
     public collection_id:number;
     public dateSpace_id:number;

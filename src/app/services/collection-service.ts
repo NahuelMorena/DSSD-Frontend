@@ -47,6 +47,7 @@ export class CollectionService {
       public reserveMaterials(offer:OffersToReserveDTO,collectionId:number):Observable<any>{
         return this.http.post<any>(this.url+"/reserve-materials/"+collectionId,offer,{withCredentials:true})
       }
+      
       public reserveDatesSpace(dateSpaceRequest:DateSpaceRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/reserve-dateSpace",dateSpaceRequest,{withCredentials:true,responseType: 'text' as 'json'})
       }

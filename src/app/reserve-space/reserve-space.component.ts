@@ -59,9 +59,10 @@ export class ReserveSpaceComponent {
   }
 
   confirmDatesSpace(){
-    console.log(this.selectedSpace);
     if(this.selectedSpace != null && this.collectionId!=-1){
+      console.log(this.selectedSpace.id);
       let dateSpaceRequest = new DateSpaceRequestDto(this.collectionId, this.selectedSpace.id, this.idCase);
+      console.log("dates: "+dateSpaceRequest.dateSpace_id);
       this.collectionService.reserveDatesSpace(dateSpaceRequest).subscribe(
         (response)=>{
           this.router.navigate(["/"])

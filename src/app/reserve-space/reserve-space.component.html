@@ -12,7 +12,7 @@
               <label style="font-size: 20px">
                 <input type="radio" name="selectedSpace" id="mueble_{{dateSpace.id}}"
                   [value]="dateSpace.id" (change)="toggleSelection(dateSpace)"  />
-                <label>Lugar: {{ dateSpace.manufacturingSpace.name }} - Desde el día {{dateSpace.available_from}} hasta el día: {{dateSpace.available_until}}</label>
+                <label>Id: {{dateSpace.id}} - Lugar: {{ dateSpace.manufacturingSpace.name }} - Desde el día {{dateSpace.available_from}} hasta el día: {{dateSpace.available_until}}</label>
               </label>
             </div>
           </div>
