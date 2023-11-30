@@ -21,12 +21,15 @@ export class EstablishMaterialsComponent {
     this.getMaterials();
     this.activatedRoute.params.subscribe(params=>{
     this.collectionId= params["id"];
+    this.idCase = params["idCase"];
       if(this.collectionId!=-1){
         console.log("ID de la coleccion es ",this.collectionId);
+        console.log("ID del caso es ", this.idCase); 
       }
     })
   }
   collectionId:number=-1;
+  idCase:number =-1; 
   materials:Material[]=[];
   selectedMaterials:MaterialDto[]=[];
   material:Material=new Material(0,"","");
@@ -77,10 +80,10 @@ export class EstablishMaterialsComponent {
   confirmMaterials(){
     console.log(this.selectedMaterials)
     if(this.selectedMaterials.length > 0 && this.collectionId!=-1){
-      let materialRequest=new MaterialRequestDto(this.collectionId,this.selectedMaterials);
+      let materialRequest=new MaterialRequestDto(this.collectionId,this.selectedMaterials,this.idCase);
       this.collectionService.confirmMaterials(materialRequest).subscribe(
         (response)=>{
-          this.router.navigate(["/reservarMateriales"])
+          this.router.navigate(["/consultaApi/"+this.collectionId+"/"+this.idCase])
         },
         (error:HttpErrorResponse)=>{
           console.log(error);

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { MaterialDto } from "../modelos/materialdto";
@@ -11,5 +11,9 @@ export class MaterialService {
     
       public getMaterials():Observable<Material[]> {
         return this.http.get<Material[]>(this.url+"/get-materials",{withCredentials:true});
+      }
+
+      public getMaterialsInCollection(collectionId:number):Observable<MaterialDto[]>{
+        return this.http.get<MaterialDto[]>(this.url+"/getMaterialsCollection/"+collectionId,{withCredentials:true})
       }
 }

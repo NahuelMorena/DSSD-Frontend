@@ -1,0 +1,17 @@
+.nav-link {
+    font-size: 20px; /* Tamaño base del texto */
+}
+
+.nav-link-grande {
+    font-size: 26px; /* Tamaño más grande del texto */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos al inicio y al final */
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+  }

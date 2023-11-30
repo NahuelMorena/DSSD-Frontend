@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TaskStablishMaterialsDTO } from '../modelos/task-stablish-materials-dto';
+import { TaskDTO } from '../modelos/task-dto';
 import { BonitaService } from '../services/bonita-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth-service';
   styleUrls: ['./list-tasks-operation-area.component.css']
 })
 export class ListTasksOperationAreaComponent {
-  tasks:TaskStablishMaterialsDTO[]=[]
+  tasks:TaskDTO[]=[]
   page=1
   count=0
   itemsPerPage=8
@@ -21,7 +21,7 @@ export class ListTasksOperationAreaComponent {
 
 
   getTasks():void{
-    this.bonitaService.getTasks().subscribe(
+    this.bonitaService.getStablishMaterialsTasks().subscribe(
       (tasks)=>{
         this.tasks=tasks;
       },

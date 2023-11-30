@@ -1,4 +1,4 @@
-export class TaskStablishMaterialsDTO {
+export class TaskDTO {
     public id:number;
     public idCase:number;
     public name:String;

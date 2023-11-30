@@ -18,7 +18,17 @@ import { AuthService } from './services/auth-service';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user-service';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { ListTasksCommercialAreaComponent } from './list-tasks-commercial-area/list-tasks-commercial-area.component';
+import { DistributionOrderPlanningComponent } from './distribution-order-planning/distribution-order-planning.component';
+import { StoreService } from './services/store-service';
+import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-commercial-area-launch-collections/list-tasks-commercial-area-launch-collections.component';
+import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
+import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
+import { DatePipe } from '@angular/common';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
+import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
+import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +38,16 @@ import { NavbarComponent } from './navbar/navbar.component';
     ListTasksOperationAreaComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ListTasksCommercialAreaComponent,
+    DistributionOrderPlanningComponent,
+    ListTasksCommercialAreaLaunchCollectionsComponent,
+    MaterialsQueryApiComponent,
+    ListTasksQueryApiComponent,
+    StatisticsComponent,
+    ListTaskReserveProviderComponent,
+    ReserveSpaceComponent,
+    ListTasksOperationAreaReserveSpaceComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +56,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
