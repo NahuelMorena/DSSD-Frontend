@@ -13,6 +13,7 @@ import { ListTasksCommercialAreaLaunchCollectionsComponent } from './list-tasks-
 import { MaterialsQueryApiComponent } from './materials-query-api/materials-query-api.component';
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
 import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
 
@@ -20,7 +21,7 @@ import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operat
 const routes: Routes = [
   {path: 'crearColeccion',component:FormColeccionComponent,canActivate:[AuthService]},
   {path: 'establecerMateriales/:id/:idCase',component:EstablishMaterialsComponent,canActivate:[AuthService]},
-  {path:'reservarMateriales',component:ReserveMaterialsComponent,canActivate:[AuthService]},
+  {path:'reservarMateriales/:id/:idCase',component:ReserveMaterialsComponent,canActivate:[AuthService]},
   {path:'listadoEstablecerMateriales',component:ListTasksOperationAreaComponent,canActivate:[AuthService]},
   {path:'listadoConsultarApi',component:ListTasksQueryApiComponent,canActivate:[AuthService]},
   {path:"consultaApi/:id/:idCase",component:MaterialsQueryApiComponent,canActivate:[AuthService]},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'planificarOrdenesDeDistribucion/:id/:idCase',component:DistributionOrderPlanningComponent,canActivate:[AuthService]},
   {path: 'listadoLanzarColeccionAlMercado', component:ListTasksCommercialAreaLaunchCollectionsComponent,canActivate:[AuthService]},
   {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]},
+  {path:'listadoReservaProveedor',component:ListTaskReserveProviderComponent,canActivate:[AuthService]},
   {path: 'listadoReservaEspacioDeFabricacion', component:ListTasksOperationAreaReserveSpaceComponent,canActivate:[AuthService]},
   {path: 'reservarEspacioDeFabricacion/:id/:idCase', component:ReserveSpaceComponent,canActivate:[AuthService]}
 ];

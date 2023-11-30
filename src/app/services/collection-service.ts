@@ -9,6 +9,8 @@ import { OffersByApiDTO } from "../modelos/offers-by-api-dto";
 import { OrderRequestDto } from "../modelos/order-request-dto";
 import { LaunchRequestDto } from "../modelos/launch-request-dto";
 import { DatePipe } from "@angular/common";
+import { Offer } from "../modelos/offer";
+import { OffersToReserveDTO } from "../modelos/offers-to-reserve-dto";
 import { DateSpaceRequestDto } from "../modelos/dateSpace-request-dto";
 
 
@@ -42,6 +44,9 @@ export class CollectionService {
         return this.http.get<OffersByApiDTO[]>(this.url+"/search-material-offers/"+idCollection+"?dateStart="+formattedDate,{withCredentials:true})
       }
 
+      public reserveMaterials(offer:OffersToReserveDTO,collectionId:number):Observable<any>{
+        return this.http.post<any>(this.url+"/reserve-materials/"+collectionId,offer,{withCredentials:true})
+      }
       public reserveDatesSpace(dateSpaceRequest:DateSpaceRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/reserve-dateSpace",dateSpaceRequest,{withCredentials:true,responseType: 'text' as 'json'})
       }

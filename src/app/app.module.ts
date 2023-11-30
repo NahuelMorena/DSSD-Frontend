@@ -26,9 +26,9 @@ import { MaterialsQueryApiComponent } from './materials-query-api/materials-quer
 import { ListTasksQueryApiComponent } from './list-tasks-query-api/list-tasks-query-api.component';
 import { DatePipe } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
 import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +45,7 @@ import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operat
     MaterialsQueryApiComponent,
     ListTasksQueryApiComponent,
     StatisticsComponent,
+    ListTaskReserveProviderComponent,
     ReserveSpaceComponent,
     ListTasksOperationAreaReserveSpaceComponent
   ],
