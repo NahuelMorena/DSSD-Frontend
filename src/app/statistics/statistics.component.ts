@@ -13,17 +13,17 @@ export class StatisticsComponent {
 
   public chart: any;
   archivedCases:ArchivedCaseDTO[]=[];
-  completedCases=0;
   meanMin=0;
   meanSeg=0;
+  completedCases=0;
 
   constructor(private bonitaService:BonitaService) {}
 
   ngOnInit(): void {
     this.getArchivedCases().then(()=>{
       this.calculateEvents();
-      this.createChart();
-      this.calculateTime();
+        this.createChart();
+         this.calculateTime();
     })
   }
 
@@ -122,9 +122,6 @@ export class StatisticsComponent {
       var startObject=new Date(startString.replace(" ","T"));
       return Math.floor(Math.abs(endObject.getTime() - startObject.getTime())/(1000 * 60));
   });
-  console.log(timeCases[0]);
-  console.log(timeCases[1]);
-  console.log(timeCases[2]);
   var sum = timeCases.reduce((acumulador, numero) => acumulador + numero, 0);
   this.meanMin =Math.floor( sum / timeCases.length);
   this.meanSeg=((sum/timeCases.length) % 1)*60;

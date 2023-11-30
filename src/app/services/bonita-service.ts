@@ -51,4 +51,8 @@ export class BonitaService {
       public nextTaskReserveMaterial(idCase:number):Observable<any>{
         return this.http.post<any>(this.url+"/nextTaskReserveMaterials/"+idCase,null,{withCredentials:true,responseType: 'text' as "json"})
       }
+
+      public getFailedCases():Observable<number>{
+        return this.http.get<number>(this.url+"/getFailedCases",{withCredentials:true})
+      }
     }
