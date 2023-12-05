@@ -7,6 +7,8 @@ import { DateSpace } from '../interfaces/date-space';
 import { NgForm } from '@angular/forms';
 import { DateSpaceRequestDto } from '../modelos/dateSpace-request-dto';
 import { CollectionService } from '../services/collection-service';
+import { DateDto } from '../modelos/date-dto';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reserve-space',
@@ -15,12 +17,22 @@ import { CollectionService } from '../services/collection-service';
 })
 export class ReserveSpaceComponent {
 
-  constructor(private dateSpaceService:DateSpacesService,private router: Router,private authService:AuthService, private activatedRoute:ActivatedRoute, private collectionService:CollectionService){
-    this.getDateSpaces()
+  constructor(private dateSpaceService:DateSpacesService,private router: Router,private authService:AuthService, private activatedRoute:ActivatedRoute, private collectionService:CollectionService, private datePipe: DatePipe){
     this.activatedRoute.params.subscribe(params=>{
       this.collectionId= params["id"];
       this.idCase = params["idCase"];
         if(this.collectionId!=-1){
+          collectionService.getByID(this.collectionId).subscribe(
+            (response)=>{
+              this.dateDto.available_from = response.date_start_manufacture ? this.datePipe.transform(response.date_start_manufacture, 'dd-MM-yyyy') : null;
+              this.dateDto.available_until = response.date_end_manufacture ? this.datePipe.transform(response.date_end_manufacture, 'dd-MM-yyyy') : null;
+              this.getDateSpaces();
+            },
+            (error:HttpErrorResponse)=>{
+              console.log(error);
+              window.alert("Ocurrio un error al buscar colección");
+            }
+          )
           console.log("ID de la coleccion es ",this.collectionId);
           console.log("ID del caso es ", this.idCase); 
         }
@@ -30,7 +42,7 @@ export class ReserveSpaceComponent {
   collectionId: number = -1;
   idCase: number = -1;
   selectedSpace: DateSpace | null = null;
-
+  dateDto:DateDto = new DateDto("","" );
   toggleSelection(space: DateSpace) {
     this.selectedSpace = space;
   }
@@ -42,7 +54,9 @@ export class ReserveSpaceComponent {
   }
 
   getDateSpaces() {
-    this.dateSpaceService.getDateSpaces().subscribe(
+    console.log(this.dateDto.available_from);
+    console.log(this.dateDto.available_until);
+    this.dateSpaceService.getDateSpacesByDates(this.dateDto).subscribe(
       (espacios)=>{
         this.dateSpaces=espacios;
       }
