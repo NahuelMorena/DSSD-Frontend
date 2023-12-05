@@ -18,6 +18,7 @@ import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
 import { ListTasksOperationAreaEvaluateCollectionComponent } from './list-tasks-operation-area-evaluate-collection/list-tasks-operation-area-evaluate-collection.component';
 import { EvaluateCollectionComponent } from './evaluate-collection/evaluate-collection.component';
+import { RescheduleCollectionComponent } from './reschedule-collection/reschedule-collection.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'listadoReservaEspacioDeFabricacion', component:ListTasksOperationAreaReserveSpaceComponent,canActivate:[AuthService]},
   {path: 'reservarEspacioDeFabricacion/:id/:idCase', component:ReserveSpaceComponent,canActivate:[AuthService]},
   {path: 'listadoValidarColeccion', component:ListTasksOperationAreaEvaluateCollectionComponent, canActivate:[AuthService]},
-  {path: 'evaluarViabilidadDeColeccion/:id/:idCase', component:EvaluateCollectionComponent, canActivate:[AuthService]}
+  {path: 'evaluarViabilidadDeColeccion/:id/:idCase', component:EvaluateCollectionComponent, canActivate:[AuthService]},
+  {path: 'reprogramarColeccion/:id/:idCase', component:RescheduleCollectionComponent, canActivate:[AuthService]}
 ];
 
 @NgModule({

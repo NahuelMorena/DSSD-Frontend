@@ -103,6 +103,7 @@ export class EvaluateCollectionComponent {
 
   reprogramarFechas(idCollection: number, idCase: number){
     console.log("reprogramarFechas");
+    this.router.navigate(["/reprogramarColeccion", idCollection, idCase])
   }
 
   cancelarColeccion(idCollection: number, idCase: number){

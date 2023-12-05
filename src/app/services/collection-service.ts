@@ -47,6 +47,10 @@ export class CollectionService {
         return this.http.post<String>(this.url+"/abort-collection",idsRequest,{withCredentials:true,responseType: "text" as "json"})
       }
 
+      public rescheduleCollection(collectionId:number, idCase:number, collection:CollectionDTO):Observable<Collection> {
+        return this.http.post<Collection>(this.url+"/reschedule-collection/"+collectionId+"/"+idCase, collection,{withCredentials:true});
+      }
+
       public searchOffers(idCollection:number,dateParameter:Date):Observable<OffersByApiDTO[]>{
         var formattedDate = this.datePipe.transform(dateParameter, 'dd-MM-yyyy');
         return this.http.get<OffersByApiDTO[]>(this.url+"/search-material-offers/"+idCollection+"?dateStart="+formattedDate,{withCredentials:true})
