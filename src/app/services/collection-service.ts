@@ -7,7 +7,7 @@ import { CollectionDTO } from "../modelos/collection-dto";
 import { MaterialRequestDto } from "../modelos/material-request-dto";
 import { OffersByApiDTO } from "../modelos/offers-by-api-dto";
 import { OrderRequestDto } from "../modelos/order-request-dto";
-import { LaunchRequestDto } from "../modelos/launch-request-dto";
+import { IDsRequestDto } from "../modelos/IDs-request-dto";
 import { DatePipe } from "@angular/common";
 import { Offer } from "../modelos/offer";
 import { OffersToReserveDTO } from "../modelos/offers-to-reserve-dto";
@@ -35,10 +35,18 @@ export class CollectionService {
         return this.http.post<String>(this.url+"/set-distribution-order",orderRequest,{withCredentials:true,responseType: 'text' as "json"})
       }
 
-      public launchCollection(launchRequest:LaunchRequestDto):Observable<String>{
-        return this.http.post<String>(this.url+"/launch-to-market",launchRequest,{withCredentials:true,responseType: "text" as "json"})
+      public launchCollection(idsRequest:IDsRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/launch-to-market",idsRequest,{withCredentials:true,responseType: "text" as "json"})
       }
       
+      public reAsignDateSpace(idsRequest:IDsRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/re-asign-dateSpace",idsRequest,{withCredentials:true,responseType: "text" as "json"})
+      }
+
+      public abortCollection(idsRequest:IDsRequestDto):Observable<String>{
+        return this.http.post<String>(this.url+"/abort-collection",idsRequest,{withCredentials:true,responseType: "text" as "json"})
+      }
+
       public searchOffers(idCollection:number,dateParameter:Date):Observable<OffersByApiDTO[]>{
         var formattedDate = this.datePipe.transform(dateParameter, 'dd-MM-yyyy');
         return this.http.get<OffersByApiDTO[]>(this.url+"/search-material-offers/"+idCollection+"?dateStart="+formattedDate,{withCredentials:true})

@@ -31,6 +31,10 @@ export class BonitaService {
         return this.http.get<TaskDTO[]>(this.url+"/getTasksQueryApi",{withCredentials:true})
       }
 
+      public getTaskEvaluateCollection():Observable<TaskDTO[]>{
+        return this.http.get<TaskDTO[]>(this.url+"/getTasksEvaluateCollection",{withCredentials:true})
+      }
+
       public nextTaskAPIQuery(idCase:number,dateForm:Date):Observable<any>{
         var formattedDate = this.datePipe.transform(dateForm, 'dd-MM-yyyy');
         return this.http.post<any>(this.url+"/nextTaskAPIQuery/"+idCase,formattedDate,{withCredentials:true,responseType: 'text' as "json"})

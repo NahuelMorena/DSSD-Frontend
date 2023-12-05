@@ -1,88 +1,91 @@
 <div *ngIf="rol === 'OPERATION'">
-    <nav class="navbar navbar-expand navbar-light bg-light">
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" > <img src="/assets/logo_nuevo_achicado.png" height="60"></a>
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" > <img src="/assets/logo_nuevo_achicado.png" height="60"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoEstablecerMateriales']">Establecer materiales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"[routerLink]="['/listadoReservaProveedor']">Reserva de proveedor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoReservaEspacioDeFabricacion']">Reserva espacio de fabricación</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoConsultarApi']">Consultas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoValidarColeccion']">Validar colección</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/estadisticas']">Estadisticas</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
+            </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/listadoEstablecerMateriales']">Establecer materiales</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"[routerLink]="['/listadoReservaProveedor']">Reserva de proveedor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/listadoReservaEspacioDeFabricacion']">Reserva espacio de fabricación</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/listadoConsultarApi']">Consultas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/estadisticas']">Estadisticas</a>
-              </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
-                  <li>
-                    <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
-                  </li>
-                </ul>
-              </li>
           </ul>
-        </div>
-      </nav>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
 <div *ngIf="rol === 'CREATIVE'">
   <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
-                <li>
-                  <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
-                </li>
-              </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </li>
-        </ul>
-      </div>
-    </nav>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
 <div *ngIf="rol === 'COMMERCIAL'">
   <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" > <img src="/assets/logo_nuevo_achicado.png" height="60"></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/listadoPlanificarDistribucion']">Planificar orden de distribución</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"[routerLink]="['/listadoLanzarColeccionAlMercado']">Lanzar colección</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/estadisticas']">Estadisticas</a>
-          </li>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" > <img src="/assets/logo_nuevo_achicado.png" height="60"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listadoPlanificarDistribucion']">Planificar orden de distribución</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"[routerLink]="['/listadoLanzarColeccionAlMercado']">Lanzar colección</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/estadisticas']">Estadisticas</a>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
-                <li>
-                  <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
-                </li>
-              </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/logo_usuario.png" alt="Imagen" height="50">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </li>
-        </ul>
-      </div>
-    </nav>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>

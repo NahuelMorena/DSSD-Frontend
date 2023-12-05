@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgZone } from '@angular/core'; 
-import { LaunchRequestDto } from '../modelos/launch-request-dto';
+import { IDsRequestDto } from '../modelos/IDs-request-dto';
 import { CollectionService } from '../services/collection-service';
 
 @Component({
@@ -54,7 +54,7 @@ export class ListTasksCommercialAreaLaunchCollectionsComponent {
   }
 
   confirmLaunch(idCollection: number, idCase: number){
-    let launchRequest = new LaunchRequestDto(idCollection,idCase);
+    let launchRequest = new IDsRequestDto(idCollection,idCase);
     this.collectionService.launchCollection(launchRequest).subscribe(
       (response)=>{
         this.router.navigate(["/"])

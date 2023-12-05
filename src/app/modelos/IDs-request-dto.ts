@@ -1,5 +1,5 @@
 
-export class LaunchRequestDto{
+export class IDsRequestDto{
     public collection_id:number;
     public process_instance_id:number;
 

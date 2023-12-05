@@ -29,6 +29,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
 import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
+import { ListTasksOperationAreaEvaluateCollectionComponent } from './list-tasks-operation-area-evaluate-collection/list-tasks-operation-area-evaluate-collection.component';
+import { EvaluateCollectionComponent } from './evaluate-collection/evaluate-collection.component';
+import { RescheduleCollectionComponent } from './reschedule-collection/reschedule-collection.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +50,10 @@ import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operat
     StatisticsComponent,
     ListTaskReserveProviderComponent,
     ReserveSpaceComponent,
-    ListTasksOperationAreaReserveSpaceComponent
+    ListTasksOperationAreaReserveSpaceComponent,
+    ListTasksOperationAreaEvaluateCollectionComponent,
+    EvaluateCollectionComponent,
+    RescheduleCollectionComponent
   ],
   imports: [
     BrowserModule,

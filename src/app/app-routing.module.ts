@@ -16,6 +16,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { ListTaskReserveProviderComponent } from './list-task-reserve-provider/list-task-reserve-provider.component';
 import { ReserveSpaceComponent } from './reserve-space/reserve-space.component';
 import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operation-area-reserve-space/list-tasks-operation-area-reserve-space.component';
+import { ListTasksOperationAreaEvaluateCollectionComponent } from './list-tasks-operation-area-evaluate-collection/list-tasks-operation-area-evaluate-collection.component';
+import { EvaluateCollectionComponent } from './evaluate-collection/evaluate-collection.component';
 
 
 const routes: Routes = [
@@ -33,7 +35,9 @@ const routes: Routes = [
   {path: 'estadisticas', component:StatisticsComponent,canActivate:[AuthService]},
   {path:'listadoReservaProveedor',component:ListTaskReserveProviderComponent,canActivate:[AuthService]},
   {path: 'listadoReservaEspacioDeFabricacion', component:ListTasksOperationAreaReserveSpaceComponent,canActivate:[AuthService]},
-  {path: 'reservarEspacioDeFabricacion/:id/:idCase', component:ReserveSpaceComponent,canActivate:[AuthService]}
+  {path: 'reservarEspacioDeFabricacion/:id/:idCase', component:ReserveSpaceComponent,canActivate:[AuthService]},
+  {path: 'listadoValidarColeccion', component:ListTasksOperationAreaEvaluateCollectionComponent, canActivate:[AuthService]},
+  {path: 'evaluarViabilidadDeColeccion/:id/:idCase', component:EvaluateCollectionComponent, canActivate:[AuthService]}
 ];
 
 @NgModule({
