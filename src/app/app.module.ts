@@ -32,6 +32,8 @@ import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operat
 import { ListTasksOperationAreaEvaluateCollectionComponent } from './list-tasks-operation-area-evaluate-collection/list-tasks-operation-area-evaluate-collection.component';
 import { EvaluateCollectionComponent } from './evaluate-collection/evaluate-collection.component';
 import { RescheduleCollectionComponent } from './reschedule-collection/reschedule-collection.component';
+import { PruebaDriveComponent } from './prueba-drive/prueba-drive.component';
+import { GoogleDriveService } from './services/drive-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { RescheduleCollectionComponent } from './reschedule-collection/reschedul
     ListTasksOperationAreaReserveSpaceComponent,
     ListTasksOperationAreaEvaluateCollectionComponent,
     EvaluateCollectionComponent,
-    RescheduleCollectionComponent
+    RescheduleCollectionComponent,
+    PruebaDriveComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,7 @@ import { RescheduleCollectionComponent } from './reschedule-collection/reschedul
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService,DatePipe],
+  providers: [MaterialService,CollectionService,BonitaService,AuthService,UserService,StoreService,DatePipe,GoogleDriveService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

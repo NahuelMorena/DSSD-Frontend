@@ -7,6 +7,8 @@ import { CollectionDTO } from '../modelos/collection-dto';
 import { CollectionService } from '../services/collection-service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service';
+import { GoogleDriveService } from '../services/drive-service';
+import { TokenService } from '../services/token-service';
 
 @Component({
   selector: 'app-form-coleccion',
@@ -16,12 +18,18 @@ import { AuthService } from '../services/auth-service';
 })
 export class FormColeccionComponent {
 
-  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService,private router: Router,private authService:AuthService){
+  constructor(private furnitureService:FurnitureService,private collectionService:CollectionService,private router: Router,private authService:AuthService,private driveService:GoogleDriveService,
+    private tokenService:TokenService){
     this.getMuebles()
   }
   furnitures:Furniture[]=[];
   collection=new CollectionDTO(null,null,null,0,"");
   submitted=false;
+  existeGlobalFurniture=false;
+  idFolderGlobalFurniture="";
+  idCollectionFolder="";
+  idCollection=-1;
+  selectedFiles: File[] = [];
   onSubmit(form:NgForm){
     if (form.valid && this.collection.units > 0 && this.validateDates() && this.furnitures.length>0){
       this.collection.date_start_manufacture=form.value.date_start_manufacture;
@@ -83,10 +91,92 @@ validateDates(): boolean {
     this.collectionService.createCollection(this.collection).subscribe(
       (response)=> {
         console.log(response);
+        this.idCollection=response.id;
         window.alert("Coleccion creada exitosamente")
+        this.driveActions();
       },
       (error:HttpErrorResponse)=>{
         console.error("Error al crear la colección ", error)
+      }
+    )
+  }
+
+  driveActions() {
+    this.loginDrive();
+    this.globalFurnitureExiste()
+      .then(() => {
+        if (!this.existeGlobalFurniture) {
+          return this.crearCarpetaGlobalFurniture();
+        } else {
+          return Promise.resolve();
+        }
+      })
+      .then(() => {
+        return this.crearCarpetaColeccion().then(()=>{
+          this.subirImagenes();
+        })
+      })
+      .catch((error) => {
+        console.error('Error en una de las acciones:', error);
+      });
+  }
+  
+  loginDrive(){
+    if(this.tokenService.getToken() == null){
+      this.driveService.authenticate();
+    }
+  }
+  
+  globalFurnitureExiste(): Promise<void> {
+    return this.driveService.containsGlobalFurniture().toPromise()
+      .then((response) => {
+        this.existeGlobalFurniture = response.files.length === 1;
+        if (this.existeGlobalFurniture) {
+          this.idFolderGlobalFurniture = response.files[0].id;
+        }
+      })
+      .catch((error) => {
+        console.error('Error al verificar la existencia de GlobalFurniture:', error);
+        throw error;
+      });
+  }
+  
+  crearCarpetaGlobalFurniture(): Promise<void> {
+    return this.driveService.createFolderGlobalFurnitureIfNotExists().toPromise()
+      .then((response) => {
+        console.log('Carpeta creada:', response);
+        this.idFolderGlobalFurniture = response.id;
+      })
+      .catch((error) => {
+        console.error('Error al crear la carpeta:', error);
+        throw error;
+      });
+  }
+  
+  crearCarpetaColeccion(): Promise<void> {
+    return this.driveService.createFolderCollection(this.idFolderGlobalFurniture, "Collection" + this.idCollection).toPromise()
+      .then((response) => {
+        this.idCollectionFolder=response.id;
+        console.log('Archivo creado:', response);
+      })
+      .catch((error) => {
+        console.error('Error al crear el archivo:', error);
+        throw error;
+      });
+  }
+
+  onImageSelect(event: any) {
+    const files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      console.log(files[i])
+      this.selectedFiles.push(files[i]); // Agregar cada archivo al array selectedFiles
+    }
+  }
+
+  subirImagenes(){
+    this.driveService.createImageFilesInFolder(this.idCollectionFolder,this.selectedFiles[0]).subscribe(
+      (response)=>{
+        console.log(response);
       }
     )
   }
