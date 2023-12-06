@@ -6,6 +6,8 @@ import { Collection } from '../modelos/collection';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DateSpacesService } from '../services/date-spaces.service';
 import { IDsRequestDto } from '../modelos/IDs-request-dto';
+import { DateDto } from '../modelos/date-dto';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-evaluate-collection',
@@ -15,8 +17,7 @@ import { IDsRequestDto } from '../modelos/IDs-request-dto';
 export class EvaluateCollectionComponent {
 
   constructor(private collectionService:CollectionService,private activatedRoute: ActivatedRoute,
-    private router:Router, private authService:AuthService,private dateSpaceService:DateSpacesService){
-      this.getDateSpaces()
+    private router:Router, private authService:AuthService,private dateSpaceService:DateSpacesService, private datePipe: DatePipe){
       this.activatedRoute.params.subscribe(params=>{
         this.collectionId = params["id"];
         this.idCase = params["idCase"];
@@ -24,6 +25,9 @@ export class EvaluateCollectionComponent {
           collectionService.getByID(this.collectionId).subscribe(
             (response)=>{
               this.collection = response;
+              this.dateDto.available_from = response.date_start_manufacture ? this.datePipe.transform(response.date_start_manufacture, 'dd-MM-yyyy') : null;
+              this.dateDto.available_until = response.date_end_manufacture ? this.datePipe.transform(response.date_end_manufacture, 'dd-MM-yyyy') : null;
+              this.getDateSpaces();
             },
             (error:HttpErrorResponse)=>{
               console.log(error);
@@ -39,9 +43,11 @@ export class EvaluateCollectionComponent {
   idCase:number=-1;
   collection:Collection = new Collection(-1,new Date(),new Date(),new Date(),-1);
   cant_DateSpace:number=-1;
+  dateDto:DateDto = new DateDto("","");
 
   getDateSpaces(){
-    this.dateSpaceService.getDateSpaces().subscribe(
+    //this.dateSpaceService.getDateSpaces().subscribe(
+      this.dateSpaceService.getDateSpacesByDates(this.dateDto).subscribe(
       (dateSpace)=>{
         this.cant_DateSpace = dateSpace.length;
       },
