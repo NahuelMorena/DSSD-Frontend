@@ -17,7 +17,6 @@
                             <p><span style="font-weight: bold;">Fecha de Fin:</span> {{ collection.date_end_manufacture | date }}</p>
                             <p><span style="font-weight: bold;">Fecha de lanzamiento:</span> {{ collection.estimated_release_date | date}} </p>
                             <p><span style="font-weight: bold;">Unidades a fabricar:</span> {{ collection.units }}</p>
-                            <p *ngIf="cant_DateSpace !== -1"><span style="font-weight: bold;">Cantidad de DateSpaces encontrados:</span>{{ cant_DateSpace }}</p>
                             <!-- Otra información de la colección según tu modelo Collection -->
                         </div>
                     </div>
@@ -26,22 +25,12 @@
                     <div class="col-lg-8 d-flex flex-column justify-content-center align-items-center">
                         <!-- Mostrar en pantallas grandes -->
                         <div class="d-none d-md-flex flex-column justify-content-center align-items-center">
-                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-2" 
-                                (click)="confirmReAsignarTurno(collectionId, idCase)"
-                                [disabled]="cant_DateSpace === 0">Reasignar Turno</button>
-                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-2"
-                                (click)="confirmReprogramarFechas(collectionId, idCase)"
-                                [disabled]="cant_DateSpace > 0">Reprogramar Fechas</button>
+                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-2" (click)="confirmReprogramarFechas(collectionId, idCase)">Reprogramar Fechas</button>
                             <button class="btn btn-danger btn-block pb-2 mb-2 mx-2" (click)="confirmCancelarColeccion(collectionId, idCase)">Cancelar Colección</button>
                         </div>
                         <!-- Mostrar en pantallas medianas y pequeñas -->
                         <div class="d-md-none d-flex flex-row justify-content-center align-items-center">
-                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-1"
-                                (click)="confirmReAsignarTurno(collectionId, idCase)"
-                                [disabled]="cant_DateSpace === 0">Reasignar Turno</button>
-                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-1"
-                                (click)="confirmReprogramarFechas(collectionId, idCase)"
-                                [disabled]="cant_DateSpace > 0">Reprogramar Fechas</button>
+                            <button class="btn btn-primary btn-block pb-2 mb-2 mx-1"(click)="confirmReprogramarFechas(collectionId, idCase)">Reprogramar Fechas</button>
                             <button class="btn btn-danger btn-block pb-2 mb-2 mx-1" (click)="confirmCancelarColeccion(collectionId, idCase)">Cancelar Colección</button>
                         </div>
                     </div>

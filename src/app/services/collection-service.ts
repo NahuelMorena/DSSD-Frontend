@@ -38,10 +38,6 @@ export class CollectionService {
       public launchCollection(idsRequest:IDsRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/launch-to-market",idsRequest,{withCredentials:true,responseType: "text" as "json"})
       }
-      
-      public reAsignDateSpace(idsRequest:IDsRequestDto):Observable<String>{
-        return this.http.post<String>(this.url+"/re-asign-dateSpace",idsRequest,{withCredentials:true,responseType: "text" as "json"})
-      }
 
       public abortCollection(idsRequest:IDsRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/abort-collection",idsRequest,{withCredentials:true,responseType: "text" as "json"})
