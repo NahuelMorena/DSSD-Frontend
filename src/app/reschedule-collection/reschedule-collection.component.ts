@@ -9,7 +9,6 @@ import { CollectionDTO } from '../modelos/collection-dto';
 import { DateSpacesService } from '../services/date-spaces.service';
 import { DateDto } from '../modelos/date-dto';
 import { DatePipe } from '@angular/common';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-reschedule-collection',
@@ -24,6 +23,7 @@ export class RescheduleCollectionComponent {
         this.collectionId = params["id"];
         this.idCase = params["idCase"];
         if(this.collectionId != -1){
+          this.getLastDeliveryDate();
           collectionService.getByID(this.collectionId).subscribe(
             (response)=>{
               this.collection = response;
@@ -47,14 +47,17 @@ export class RescheduleCollectionComponent {
   submitted=false;
   dateDto:DateDto = new DateDto("","");
   cant_DateSpace:number = -1;
+  lastDate:string="";
   onSubmit(form:NgForm){
     if (form.valid && this.validateDates()){
       this.dateDto.available_from = form.value.date_start_manufacture ? this.datePipe.transform(form.value.date_start_manufacture, 'dd-MM-yyyy') : null;
       this.dateDto.available_until = form.value.date_end_manufacture ? this.datePipe.transform(form.value.date_end_manufacture, 'dd-MM-yyyy') : null;
+      console.log("Se van a buscar espacios de fabricación");
       this.getDateSpaces().then((result: number) => {
         if (result == 0){
           window.alert('No se encuentran espacios de fabricación en base a las fechas dadas');
         } else {
+          console.log("Esta todo en orden para reprogramar la colección");
           this.collectionDTO.date_start_manufacture = form.value.date_start_manufacture;
           this.collectionDTO.date_end_manufacture = form.value.date_end_manufacture;
           this.collectionDTO.estimated_release_date = form.value.estimated_release_date;
@@ -72,8 +75,16 @@ export class RescheduleCollectionComponent {
       var startDate = new Date(this.collection.date_start_manufacture);
       var endDate = new Date(this.collection.date_end_manufacture);
       var estimatedDate = new Date(this.collection.estimated_release_date);
-  
-      if (startDate>new Date() && startDate < endDate && endDate < estimatedDate) {
+      
+      var lastDateParts = this.lastDate.split("-");
+      var lastDate = new Date(
+          parseInt(lastDateParts[2]),  // Año
+          parseInt(lastDateParts[1]) - 1,  // Mes (restamos 1 porque los meses en JavaScript son 0-indexados)
+          parseInt(lastDateParts[0])  // Día
+      );
+
+      console.log(lastDate.toISOString());
+      if (startDate>new Date() && lastDate < startDate && startDate < endDate && endDate < estimatedDate) {
         return true;
       } else {
         window.alert('Las fechas no cumplen las condiciones');
@@ -99,6 +110,33 @@ export class RescheduleCollectionComponent {
       }
       throw error;
     }
+  }
+
+  getLastDeliveryDate(){
+    this.collectionService.getReservesByCollectionId(this.collectionId).subscribe(
+      (response)=> {
+        console.log("cantidad de reservas: ",response.length);
+        console.log("reserva: ", response);
+
+        if (response.length > 0){
+          const lastReserve = response.reduce((maxReserve, currentReserve) => {
+            const maxDate = new Date(maxReserve.delivery_date);
+            const currentDate = new Date(currentReserve.delivery_date);
+
+            return currentDate > maxDate ? currentReserve : maxReserve;
+          });
+          
+          this.lastDate = lastReserve.delivery_date;
+          console.log("Reserva con la fecha de entrega original: ", this.lastDate);
+        
+        } else {
+          console.log("No se han encontrado reservas");
+        }
+      },
+      (error:HttpErrorResponse)=>{
+        console.error("Error buscar reservas", error)
+      }
+    )
   }
 
   rescheduleCollection():void{

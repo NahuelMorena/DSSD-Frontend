@@ -12,6 +12,7 @@ import { DatePipe } from "@angular/common";
 import { Offer } from "../modelos/offer";
 import { OffersToReserveDTO } from "../modelos/offers-to-reserve-dto";
 import { DateSpaceRequestDto } from "../modelos/dateSpace-request-dto";
+import { ReserveByApiDTO } from "../modelos/reserve-api-dto";
 
 
 @Injectable()
@@ -58,5 +59,9 @@ export class CollectionService {
       
       public reserveDatesSpace(dateSpaceRequest:DateSpaceRequestDto):Observable<String>{
         return this.http.post<String>(this.url+"/reserve-dateSpace",dateSpaceRequest,{withCredentials:true,responseType: 'text' as 'json'})
+      }
+
+      public getReservesByCollectionId(idCollection:number):Observable<ReserveByApiDTO[]>{
+        return this.http.get<ReserveByApiDTO[]>(this.url+"/get-all-reserves/"+idCollection,{withCredentials: true})
       }
 }
