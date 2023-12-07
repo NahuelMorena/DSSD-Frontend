@@ -45,11 +45,7 @@ export class NavbarComponent {
     this.authService.logout().subscribe(
       (response) => {
         if(this.rol=="CREATIVE"){
-          this.driveService.logout().subscribe(
-            (response)=>{
-              this.tokenService.clearToken();
-            }
-          )
+          this.tokenService.clearToken();
         }
         this.route.navigate(["/login"])
       },
