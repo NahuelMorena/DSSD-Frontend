@@ -39,6 +39,7 @@ export class ReserveSpaceComponent {
       })
   }
   dateSpaces: DateSpace[] = [];
+  searchPerformed: boolean = false;
   collectionId: number = -1;
   idCase: number = -1;
   selectedSpace: DateSpace | null = null;
@@ -59,6 +60,7 @@ export class ReserveSpaceComponent {
     this.dateSpaceService.getDateSpacesByDates(this.dateDto).subscribe(
       (espacios)=>{
         this.dateSpaces=espacios;
+        this.searchPerformed = true;
       }
       ,(error:HttpErrorResponse)=>{
         if(error.status==401){
