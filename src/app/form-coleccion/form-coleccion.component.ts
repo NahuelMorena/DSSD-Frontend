@@ -102,7 +102,6 @@ validateDates(): boolean {
   }
 
   driveActions() {
-    this.loginDrive();
     this.globalFurnitureExiste()
       .then(() => {
         if (!this.existeGlobalFurniture) {
@@ -119,12 +118,6 @@ validateDates(): boolean {
       .catch((error) => {
         console.error('Error en una de las acciones:', error);
       });
-  }
-  
-  loginDrive(){
-    if(this.tokenService.getToken() == null){
-      this.driveService.authenticate();
-    }
   }
   
   globalFurnitureExiste(): Promise<void> {
@@ -168,16 +161,23 @@ validateDates(): boolean {
   onImageSelect(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      console.log(files[i])
-      this.selectedFiles.push(files[i]); // Agregar cada archivo al array selectedFiles
+      if(files[i].name.includes(".jpg")){
+        this.selectedFiles.push(files[i]);
+      }
     }
   }
 
+  deleteMaterial(index: number): void {
+    this.selectedFiles.splice(index, 1);
+  }
+
   subirImagenes(){
-    this.driveService.createImageFilesInFolder(this.idCollectionFolder,this.selectedFiles[0]).subscribe(
-      (response)=>{
-        console.log(response);
-      }
-    )
+    for(var file of this.selectedFiles){
+      this.driveService.createImageFileInFolder(this.idCollectionFolder,file).subscribe(
+        (response)=>{
+          console.log(response);
+        }
+      )
+    }
   }
 }

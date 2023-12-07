@@ -30,8 +30,22 @@ export class GoogleDriveService {
     window.location.href = authUrl;
   }
 
+  logout(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+  
+    const params = new URLSearchParams();
+    var token=this.tokenService.getToken();
+    if(token!=null){
+      params.set('token', token);
+      params.set('client_id', this.CLIENT_ID);
+    }
+  
+    return this.http.post<any>('https://oauth2.googleapis.com/revoke', params.toString(), { headers });
+  }
+
   getToken(code: string) {
-    console.log("Se ejecuto")
     const params = new URLSearchParams();
     params.set('code', code);
     params.set('client_id', this.CLIENT_ID);
@@ -96,20 +110,26 @@ export class GoogleDriveService {
     return this.http.post<any>(this.url+"/drive/v3/files", metadata, { headers });
   }
 
-  createImageFilesInFolder(folderId: string, image: File): Observable<any> {
+  createImageFileInFolder(folderId: string, imageFile: File): Observable<any> {
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.tokenService.getToken()}`,
-      'Content-Type': 'multipart/related; boundary=foo_bar_baz'
+      Authorization: `Bearer ${this.tokenService.getToken()}`
     });
-
   
     const metadata = {
-      name:image.name,
-      file:image,
-      parents: [folderId],
+      name: imageFile.name,
       mimeType: 'image/jpeg',
+      parents: [folderId]
     };
   
-    return this.http.patch<any>(this.url + '/upload/drive/v3/files?uploadType=multipart', metadata,{headers});
+    const formData = new FormData();
+    formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    formData.append('file', imageFile);
+  
+    return this.http.post<any>(
+      this.url + '/upload/drive/v3/files?uploadType=multipart',
+      formData,
+      { headers }
+    );
   }
+
 }

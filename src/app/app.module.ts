@@ -32,7 +32,6 @@ import { ListTasksOperationAreaReserveSpaceComponent } from './list-tasks-operat
 import { ListTasksOperationAreaEvaluateCollectionComponent } from './list-tasks-operation-area-evaluate-collection/list-tasks-operation-area-evaluate-collection.component';
 import { EvaluateCollectionComponent } from './evaluate-collection/evaluate-collection.component';
 import { RescheduleCollectionComponent } from './reschedule-collection/reschedule-collection.component';
-import { PruebaDriveComponent } from './prueba-drive/prueba-drive.component';
 import { GoogleDriveService } from './services/drive-service';
 @NgModule({
   declarations: [
@@ -55,8 +54,7 @@ import { GoogleDriveService } from './services/drive-service';
     ListTasksOperationAreaReserveSpaceComponent,
     ListTasksOperationAreaEvaluateCollectionComponent,
     EvaluateCollectionComponent,
-    RescheduleCollectionComponent,
-    PruebaDriveComponent
+    RescheduleCollectionComponent
   ],
   imports: [
     BrowserModule,

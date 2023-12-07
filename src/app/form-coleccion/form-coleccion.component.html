@@ -42,13 +42,16 @@
             <input type="text"  required class="form-control form-control-lg" id="mail" name="mail" placeholder="Email" [(ngModel)]="collection.mail">
           </div>
 
-          <div class="form-group mb-5" style="margin-top: 20px;">
+          <div class="mb-5" style="margin-top: 20px;">
             <label for="collectionImages" style="font-size: 1.8rem; font-family: Helvetica, sans-serif;">Imágenes de la colección</label>
             <input type="file" class="form-control-file" id="collectionImages" name="collectionImages" (change)="onImageSelect($event)">
           </div>
   
           <ul class="list-group" *ngIf="selectedFiles.length > 0">
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let file of selectedFiles">{{ file.name }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let file of selectedFiles ;let i = index">
+              <h5>{{ file.name }}</h5>
+              <button class="btn btn-danger" type="button" (click)="deleteMaterial(i)">Quitar</button>
+            </li>
           </ul>
   
             
