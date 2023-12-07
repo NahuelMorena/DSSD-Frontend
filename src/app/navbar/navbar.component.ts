@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../services/auth-service';
+import { GoogleDriveService } from '../services/drive-service';
+import { TokenService } from '../services/token-service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,7 @@ export class NavbarComponent {
 
   rol:string="";
 
-  constructor(private route:Router,private userService:UserService,private authService:AuthService){
+  constructor(private route:Router,private userService:UserService,private authService:AuthService,private driveService:GoogleDriveService,private tokenService:TokenService){
     this.getRol()
   }
 
@@ -42,6 +44,13 @@ export class NavbarComponent {
   logout(){
     this.authService.logout().subscribe(
       (response) => {
+        if(this.rol=="CREATIVE"){
+          this.driveService.logout().subscribe(
+            (response)=>{
+              this.tokenService.clearToken();
+            }
+          )
+        }
         this.route.navigate(["/login"])
       },
       (error:HttpErrorResponse)=>{
